@@ -14,7 +14,7 @@ Copyright (c) 2017 Ritter Insurance Marketing`),
 if (process.env.INCLUDE_WEBPACK_HTML) {
   plugins.push(
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'demo/index.html',
       filename: '../index.html',
       inject: 'head'
     })
