@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Environment Notifier Demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Environment Notifier Demo</h1>
+    </div>
+    <div id="environment-notifier-container">
+    </div>
+    <script>
+      var environmentNotifierContainer = document.getElementById('environment-notifier-container');
+
+      var environmentNotifier = new EnvironmentNotifier({ environments: [] });
+      environmentNotifier.addEnvironment({
+        name: 'Test',
+        detection: function() { return true; },
+        showRibbon: true,
+        showModalEveryView: true
+      });
+
+      console.log('Current Environment:', environmentNotifier.getCurrentEnvironment());
+
+      environmentNotifier.start(environmentNotifierContainer);
+    </script>
+  </body>
+</html>
