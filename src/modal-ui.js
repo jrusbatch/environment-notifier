@@ -13,6 +13,7 @@ export default class ModalUi {
         width: 100%;
         background-color: ${environment.color};
         opacity: .9;
+        transition: opacity 0.5s linear;
         text-align: center;
         font-size: 22px;
 
@@ -52,8 +53,12 @@ export default class ModalUi {
     modalContentButton.innerHTML = 'OK';
     modalContentButton.onclick = evt => {
       evt.preventDefault();
-      modal.style.display = 'none';
+      modal.style.opacity = '0';
     };
+
+    modal.addEventListener('transitionend', evt => {
+      evt.currentTarget.parentNode.removeChild(evt.currentTarget);
+    });
 
     modalContent.appendChild(modalContentText);
     modalContent.appendChild(modalContentButton);
