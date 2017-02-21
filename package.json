@@ -17,7 +17,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "validate": "npm run lint && npm test",
-    "prepare": "npm run build && npm run validate && npm run check",
     "watch": "webpack --watch"
   },
   "author": {
