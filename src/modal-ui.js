@@ -18,6 +18,9 @@ export default class ModalUi {
 
         /* https://css-tricks.com/snippets/css/system-font-stack/ */
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+        /* https://stackoverflow.com/a/25461690 answering https://stackoverflow.com/questions/491052/minimum-and-maximum-value-of-z-index*/
+        z-index: 2147483647;
       }
 
       .${elementClass} .${elementClass}-content {
