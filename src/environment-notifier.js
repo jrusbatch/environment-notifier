@@ -101,8 +101,8 @@ export default class EnvironmentNotifier {
       return;
     }
 
-    if (environment.showModalEveryView || (environment.showModalFirstView && !this.modalUi.previouslyDismissed(environment.name))) {
-      this.modalUi.show(domScope, environment.name);
+    if (environment.showModalEveryView || (environment.showModalFirstView && !this.modalUi.previouslyDismissed(environment))) {
+      this.modalUi.show(domScope, environment);
     }
 
     if (environment.showRibbon) {
