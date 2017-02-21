@@ -48,7 +48,7 @@ new EnvironmentNotifier({
 | `detection`           | The environment detection function (returns `true` for match).            | `() => false` |
 | `showModalEveryView`  | Show modal for every page view.                                           | `false` |
 | `showModalFirstView`  | Show modal for first page view.                                           | `true` |
-| `ribbonLocation`      | The location of the on-screen ribbon.                                     | `'bottom'` |
+| `ribbonLocation`      | The location of the on-screen ribbon. (Accepted values: `top`, `bottom`)  | `'bottom'` |
 | `showRibbon`          | Whether the on-screen ribbon should be shown or not.                      | `true` |
 
 ## Methods
