@@ -106,7 +106,7 @@ export default class EnvironmentNotifier {
     }
 
     if (environment.showRibbon) {
-      this.ribbonUi.show(domScope, environment.name, environment.ribbonLocation);
+      this.ribbonUi.show(domScope, environment);
     }
   }
 }
