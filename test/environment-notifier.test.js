@@ -3,6 +3,7 @@ import EnvironmentNotifier from '../src/environment-notifier';
 
 beforeEach(() => {
   document.body.innerHTML = '';
+  localStorage.clear();
 });
 
 test('constructor should apply defaults with provided configuration', () => {
@@ -177,4 +178,55 @@ test('start(domScope) should use provided domScope for displaying ribbon', () =>
 test('start should throw if a DOM item is not provided', () => {
   expect(() => new EnvironmentNotifier().start(null))
     .toThrow('domScope must be provided.');
+});
+
+test('start should always show modal on every view when shouldShowEveryView is true regardless if previously dismissed', () => {
+  const container = document.createElement('div');
+
+  const sut = new EnvironmentNotifier({
+    environments: [
+      {
+        name: 'Test',
+        detection: () => true,
+        displayRibbon: true,
+        showModalEveryView: true
+      }
+    ]
+  });
+
+  localStorage.setItem(
+    `environment-notifier-modal-dismissed:${sut.getCurrentEnvironment().name}`,
+    new Date().toJSON());
+
+  sut.start(container);
+
+  const modal = container.querySelector('.environment-notifier-modal');
+
+  expect(modal).toBeTruthy();
+});
+
+test('start should not show modal if previously dismissed when showModelEveryView is false and showModelFirstView is true', () => {
+  const container = document.createElement('div');
+
+  const sut = new EnvironmentNotifier({
+    environments: [
+      {
+        name: 'Test',
+        detection: () => true,
+        displayRibbon: true,
+        showModalEveryView: false,
+        showModelFirstView: true
+      }
+    ]
+  });
+
+  localStorage.setItem(
+    `environment-notifier-modal-dismissed:${sut.getCurrentEnvironment().name}`,
+    new Date().toJSON());
+
+  sut.start(container);
+
+  const modal = container.querySelector('.environment-notifier-modal');
+
+  expect(modal).toBeNull();
 });

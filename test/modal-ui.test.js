@@ -39,21 +39,6 @@ test('show should set expected modal contents', () => {
     + `</div>`);
 });
 
-test('show should not show modal if previously dismissed', () => {
-  const domScope = document.createElement('div');
-  const environment = { name: 'Test', detection: () => true };
-
-  localStorage.setItem(
-    `environment-notifier-modal-dismissed:${environment.name}`,
-    new Date().toJSON());
-
-  new ModalUi().show(domScope, environment);
-
-  const modal = domScope.querySelector('.environment-notifier-modal');
-
-  expect(modal).toBeNull();
-});
-
 test('modal button should hide modal when clicked', () => {
   const domScope = document.createElement('div');
   const environment = { name: 'Test', detection: () => true };

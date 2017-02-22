@@ -1,8 +1,10 @@
+import KeyProvider from './key-provider';
 import ModalUi from './modal-ui';
 import RibbonUi from './ribbon-ui';
 
 export default class EnvironmentNotifier {
   constructor(configuration = null) {
+    this.keyProvider = new KeyProvider();
     this.ribbonUi = new RibbonUi();
     this.modalUi = new ModalUi();
 
@@ -98,12 +100,22 @@ export default class EnvironmentNotifier {
       return;
     }
 
-    if (environment.showModalEveryView || (environment.showModalFirstView && !this.modalUi.previouslyDismissed(environment))) {
+    if (environment.showModalEveryView || (environment.showModalFirstView && !this.modalPreviouslyDismissed(environment))) {
       this.modalUi.show(domScope, environment);
     }
 
     if (environment.showRibbon) {
       this.ribbonUi.show(domScope, environment);
     }
+  }
+
+  modalPreviouslyDismissed(environment) {
+    if (!environment) { throw new Error('environment must be provided.'); }
+
+    if (localStorage) {
+      return !!localStorage.getItem(this.keyProvider.getLocalStorageKeyForEnvironment(environment));
+    }
+
+    return false;
   }
 }

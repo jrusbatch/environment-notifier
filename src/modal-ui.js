@@ -1,12 +1,14 @@
+import KeyProvider from './key-provider';
+
 export default class ModalUi {
+  constructor() {
+    this.keyProvider = new KeyProvider();
+  }
+
   show(domScope, environment) {
     if (!domScope) { throw new Error('domScope must be provided.'); }
     if (!environment) { throw new Error('environment must be provided.'); }
     if (!environment.name) { throw new Error('environment.name must be set.'); }
-
-    if (this.previouslyDismissed(environment)) {
-      return;
-    }
 
     const elementClass = 'environment-notifier-modal';
 
@@ -68,7 +70,9 @@ export default class ModalUi {
       evt.preventDefault();
 
       if (localStorage) {
-        localStorage.setItem(this.getLocalStorageKey(environment), new Date().toJSON());
+        localStorage.setItem(
+          this.keyProvider.getLocalStorageKeyForEnvironment(environment),
+          new Date().toJSON());
       }
 
       modal.style.opacity = '0';
@@ -95,22 +99,5 @@ export default class ModalUi {
 
     domScope.appendChild(style);
     domScope.appendChild(modal);
-  }
-
-  getLocalStorageKey(environment) {
-    if (!environment) { throw new Error('environment must be provided.'); }
-    if (!environment.name) { throw new Error('environment.name must be set.'); }
-
-    return `environment-notifier-modal-dismissed:${environment.name}`;
-  }
-
-  previouslyDismissed(environment) {
-    if (!environment) { throw new Error('environment must be provided.'); }
-
-    if (localStorage) {
-      return !!localStorage.getItem(this.getLocalStorageKey(environment));
-    }
-
-    return false;
   }
 }
