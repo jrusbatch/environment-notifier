@@ -71,7 +71,7 @@ Start environment notifier working with `domScope`.
 
 ## Events
 
-### `environmentNotifierModalDismissed`
+### `environmentNotifier.modalDismissed`
 
 Raised when the modal has been dismissed by the user.
 

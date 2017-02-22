@@ -53,7 +53,7 @@ test('modal button should hide modal when clicked', () => {
   expect(modal.style.opacity).toBe('0');
 });
 
-test('model button should raise environmentNotifierModalDismissed event when clicked', () => {
+test('model button should raise environmentNotifier.modalDismissed event when clicked', () => {
   const domScope = document.createElement('div');
   const environment = { name: 'Test', detection: () => true };
 
@@ -62,7 +62,7 @@ test('model button should raise environmentNotifierModalDismissed event when cli
   const button = domScope.querySelector('.environment-notifier-modal button');
 
   let expectedEventRaised = false;
-  domScope.addEventListener('environmentNotifierModalDismissed', () => {
+  domScope.addEventListener('environmentNotifier.modalDismissed', () => {
     expectedEventRaised = true;
   });
 

@@ -72,7 +72,7 @@ export default class ModalUi {
       this.browserStorage.setModalDismissed(environment);
 
       modal.style.opacity = '0';
-      modal.dispatchEvent(new CustomEvent('environmentNotifierModalDismissed', { bubbles: true }));
+      modal.dispatchEvent(new CustomEvent('environmentNotifier.modalDismissed', { bubbles: true }));
     };
 
     modal.addEventListener('transitionend', evt => {
