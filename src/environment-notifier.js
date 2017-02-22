@@ -57,13 +57,12 @@ export default class EnvironmentNotifier {
   }
 
   addEnvironment(environment) {
-    if (!environment) {
-      throw new Error('environment must be provided.');
-    } else if (!environment.name) {
-      throw new Error('environment.name must be set.');
-    } else if (!environment.detection || typeof environment.detection !== 'function') {
+    if (!environment) { throw new Error('environment must be provided.'); }
+    if (!environment.name) { throw new Error('environment.name must be set.'); }
+    if (!environment.detection || typeof environment.detection !== 'function') {
       throw new Error('environment.detection must be a function.');
-    } else if (this.configuration.environments.some(x => x.name === environment.name)) {
+    }
+    if (this.configuration.environments.some(x => x.name === environment.name)) {
       throw new Error('An environment with this name already exists.');
     }
 
@@ -92,9 +91,7 @@ export default class EnvironmentNotifier {
   }
 
   start(domScope = this.configuration.defaultDomScope) {
-    if (!domScope) {
-      throw new Error('domScope must be provided.');
-    }
+    if (!domScope) { throw new Error('domScope must be provided.'); }
 
     const environment = this.getCurrentEnvironment();
     if (!environment) {
