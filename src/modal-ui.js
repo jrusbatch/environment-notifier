@@ -61,16 +61,16 @@ export default class ModalUi {
       modal.style.opacity = '0';
     };
 
+    modal.addEventListener('transitionend', evt => {
+      evt.currentTarget.parentNode.removeChild(evt.currentTarget);
+    });
+
     document.addEventListener('keydown', function onKeydown(evt) {
       if (evt.keyCode === 13 /* enter */ || evt.keyCode === 27 /* esc */) {
         evt.preventDefault();
         modalContentButton.click();
         document.removeEventListener('keydown', onKeydown);
       }
-    });
-
-    modal.addEventListener('transitionend', evt => {
-      evt.currentTarget.parentNode.removeChild(evt.currentTarget);
     });
 
     modalContent.appendChild(modalContentText);
