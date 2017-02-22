@@ -40,13 +40,18 @@ export default class ModalUi {
       }
     `;
 
+    const messageId = `${elementClass}-message`;
+
     const modal = document.createElement('div');
+    modal.setAttribute('role', 'alertdialog');
+    modal.setAttribute('aria-describedby', messageId);
     modal.classList.add(elementClass);
 
     const modalContent = document.createElement('div');
     modalContent.classList.add(`${elementClass}-content`);
 
     const modalContentText = document.createElement('p');
+    modalContentText.id = messageId;
     modalContentText.innerHTML = `You are viewing the <strong>${environment.name}</strong> environment.`;
 
     const modalContentButton = document.createElement('button');
