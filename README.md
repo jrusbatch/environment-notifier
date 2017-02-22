@@ -72,6 +72,7 @@ Start environment notifier working with `domScope`.
 ## Development
 
 - `npm install`
+- `npm start` to run demo.
 - `npm run build` or `npm run watch`
 - `npm test` or `npm run test:watch` to run tests.
 - `npm run lint` to run linter.
