@@ -1,8 +1,8 @@
-import KeyProvider from './key-provider';
+import BrowserStorage from './browser-storage';
 
 export default class ModalUi {
   constructor() {
-    this.keyProvider = new KeyProvider();
+    this.browserStorage = new BrowserStorage();
   }
 
   show(domScope, environment) {
@@ -69,14 +69,9 @@ export default class ModalUi {
     modalContentButton.onclick = evt => {
       evt.preventDefault();
 
-      if (localStorage) {
-        localStorage.setItem(
-          this.keyProvider.getLocalStorageKeyForEnvironment(environment),
-          new Date().toJSON());
-      }
+      this.browserStorage.setModalDismissed(environment);
 
       modal.style.opacity = '0';
-
       modal.dispatchEvent(new CustomEvent('environmentNotifierModalDismissed', { bubbles: true }));
     };
 

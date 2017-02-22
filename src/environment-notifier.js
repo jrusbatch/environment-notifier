@@ -1,10 +1,10 @@
-import KeyProvider from './key-provider';
+import BrowserStorage from './browser-storage';
 import ModalUi from './modal-ui';
 import RibbonUi from './ribbon-ui';
 
 export default class EnvironmentNotifier {
   constructor(configuration = null) {
-    this.keyProvider = new KeyProvider();
+    this.browserStorage = new BrowserStorage();
     this.ribbonUi = new RibbonUi();
     this.modalUi = new ModalUi();
 
@@ -112,10 +112,6 @@ export default class EnvironmentNotifier {
   modalPreviouslyDismissed(environment) {
     if (!environment) { throw new Error('environment must be provided.'); }
 
-    if (localStorage) {
-      return !!localStorage.getItem(this.keyProvider.getLocalStorageKeyForEnvironment(environment));
-    }
-
-    return false;
+    return !!this.browserStorage.getModalDismissedAt(environment);
   }
 }
