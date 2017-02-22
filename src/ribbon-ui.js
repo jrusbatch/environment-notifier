@@ -1,5 +1,9 @@
 export default class RibbonUi {
   show(domScope, environment) {
+    if (!domScope) { throw new Error('domScope must be provided.'); }
+    if (!environment) { throw new Error('environment must be provided.'); }
+    if (!environment.name) { throw new Error('environment.name must be set.'); }
+
     const elementClass = 'environment-notifier-ribbon';
 
     const style = document.createElement('style');
