@@ -11,6 +11,13 @@
         <label for="input-autofocus">Autofocus <code>input[type="text"]</code></label>
         <input id="input-autofocus" type="text" autofocus />
       </form>
+
+      <hr />
+
+      <p>
+        Modal dismissed at: <strong id="modal-dismissed-at"></strong>
+      </p>
+      <button id="clear-modal-dismissed" class="btn btn-default">Clear modal dismissed</button>
     </div>
     <div id="environment-notifier-container">
     </div>
@@ -29,6 +36,26 @@
       console.log('Current Environment:', environmentNotifier.getCurrentEnvironment());
 
       environmentNotifier.start(environmentNotifierContainer);
+
+      var localStorageKey = 'environment-notifier-modal-dismissed:' + environmentNotifier.getCurrentEnvironment().name;
+
+      function updateModalDismissedAt() {
+        document.getElementById('modal-dismissed-at').innerHTML = localStorage.getItem(localStorageKey) || '---';
+      }
+
+      document.getElementById('clear-modal-dismissed').addEventListener('click', function(evt) {
+        evt.preventDefault();
+
+        localStorage.removeItem(localStorageKey);
+
+        updateModalDismissedAt();
+      });
+
+      document.addEventListener('environmentNotifierModalDismissed', function(evt) {
+        updateModalDismissedAt();
+      });
+
+      updateModalDismissedAt();
     </script>
   </body>
 </html>

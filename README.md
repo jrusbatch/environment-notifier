@@ -69,6 +69,12 @@ Remove an environment where `name` matches provided `environmentName`.
 
 Start environment notifier working with `domScope`.
 
+## Events
+
+### `environmentNotifierModalDismissed`
+
+Raised when the modal has been dismissed by the user.
+
 ## Development
 
 - `npm install`

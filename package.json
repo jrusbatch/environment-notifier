@@ -19,6 +19,9 @@
     "validate": "npm run lint && npm test",
     "watch": "webpack --watch"
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./test/helpers/localStorageMock.js"
+  },
   "author": {
     "name": "Ritter Insurance Marketing"
   },

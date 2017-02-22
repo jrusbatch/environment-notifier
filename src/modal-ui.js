@@ -1,5 +1,13 @@
 export default class ModalUi {
   show(domScope, environment) {
+    if (!domScope) { throw new Error('domScope must be provided.'); }
+    if (!environment) { throw new Error('environment must be provided.'); }
+    if (!environment.name) { throw new Error('environment.name must be set.'); }
+
+    if (this.previouslyDismissed(environment)) {
+      return;
+    }
+
     const elementClass = 'environment-notifier-modal';
 
     const style = document.createElement('style');
@@ -58,7 +66,14 @@ export default class ModalUi {
     modalContentButton.innerHTML = 'OK';
     modalContentButton.onclick = evt => {
       evt.preventDefault();
+
+      if (localStorage) {
+        localStorage.setItem(this.getLocalStorageKey(environment), new Date().toJSON());
+      }
+
       modal.style.opacity = '0';
+
+      modal.dispatchEvent(new CustomEvent('environmentNotifierModalDismissed', { bubbles: true }));
     };
 
     modal.addEventListener('transitionend', evt => {
@@ -82,11 +97,20 @@ export default class ModalUi {
     domScope.appendChild(modal);
   }
 
-  dismiss(environment) { // eslint-disable-line no-unused-vars
-    // TODO: Add item to local storage that the modal was dismissed in this browser for this `environment.name`
+  getLocalStorageKey(environment) {
+    if (!environment) { throw new Error('environment must be provided.'); }
+    if (!environment.name) { throw new Error('environment.name must be set.'); }
+
+    return `environment-notifier-modal-dismissed:${environment.name}`;
   }
 
-  previouslyDismissed(environment) { // eslint-disable-line no-unused-vars
-    return true; // TODO: Check if the modal was previously dismissed for this environment
+  previouslyDismissed(environment) {
+    if (!environment) { throw new Error('environment must be provided.'); }
+
+    if (localStorage) {
+      return !!localStorage.getItem(this.getLocalStorageKey(environment));
+    }
+
+    return false;
   }
 }
