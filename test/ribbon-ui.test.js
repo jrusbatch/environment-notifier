@@ -31,5 +31,5 @@ test('show should set expected ribbon text', () => {
 
   const ribbon = domScope.querySelector('.environment-notifier-ribbon');
 
-  expect(ribbon.innerHTML).toBe('Environment: Test');
+  expect(ribbon.innerHTML).toBe('Environment: <strong>Test</strong>');
 });

@@ -33,7 +33,7 @@ test('show should set expected modal contents', () => {
 
   expect(modal.innerHTML).toBe(
     `<div class="environment-notifier-modal-content">`
-    + `<p>You are viewing the <strong>Test</strong> environment.</p>`
+    + `<p id="environment-notifier-modal-message">You are viewing the <strong>Test</strong> environment.</p>`
     + `<button>OK</button>`
     + `</div>`);
 });
@@ -49,5 +49,5 @@ test('modal button should hide modal when clicked', () => {
 
   const modal = domScope.querySelector('.environment-notifier-modal');
 
-  expect(modal.style.display).toBe('none');
+  expect(modal.style.opacity).toBe('0');
 });
