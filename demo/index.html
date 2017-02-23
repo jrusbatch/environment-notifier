@@ -18,7 +18,15 @@
         Modal dismissed at: <strong id="modal-dismissed-at"></strong>
       </p>
       <button id="clear-modal-dismissed" class="btn btn-default">Clear modal dismissed</button>
+
+      <h2><code>getCurrentEnvironment()</code></h2>
+      <pre id="current-environment-info"></pre>
+
+      <h2><code>EnvironmentNotifier</code> instance</h2>
+      <p><em>(prior to calling <code>start(domScope = this.configuration.defaultDomScope)</code> method)</em></p>
+      <pre id="environment-notifier-as-json"></pre>
     </div>
+
     <div id="environment-notifier-container">
     </div>
     <script>
@@ -31,7 +39,11 @@
         color: 'lightblue'
       });
 
-      console.log('Current Environment:', environmentNotifier.getCurrentEnvironment());
+      document.getElementById('current-environment-info').innerHTML =
+        JSON.stringify(environmentNotifier.getCurrentEnvironment(), null, 2);
+
+      document.getElementById('environment-notifier-as-json').innerHTML =
+        JSON.stringify(environmentNotifier, null, 2);
 
       environmentNotifier.start(environmentNotifierContainer);
 
