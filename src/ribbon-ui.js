@@ -17,7 +17,6 @@ export default class RibbonUi {
         padding-top: 5px;
         width: 100%;
         background-color: ${environment.color};
-        opacity: .75;
         font-size: 16px;
         text-align: center;
 

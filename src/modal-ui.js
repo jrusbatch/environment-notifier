@@ -22,7 +22,6 @@ export default class ModalUi {
         height: 100%;
         width: 100%;
         background-color: ${environment.color};
-        opacity: .9;
         transition: opacity 0.5s linear;
         text-align: center;
         font-size: 22px;

@@ -53,7 +53,7 @@ test('constructor should apply this.configuration.environmentDefaults for constr
 test('constructor should apply environment specific configuration for built-in environments', () => {
   const sut = new EnvironmentNotifier();
 
-  expect(sut.configuration.environments.find(x => x.name === 'Local').color).toBe('lightyellow');
+  expect(sut.configuration.environments.find(x => x.name === 'Local').color).toBe('rgba(255, 255, 224, .75)');
 });
 
 test('constructor should apply environment specific configuration for constructor provided environments', () => {
