@@ -90,6 +90,20 @@ test('addEnvironment should apply this.defaultConfiguration.environmentDefaults'
   expect(sut.getCurrentEnvironment().showRibbon).toBe(true);
 });
 
+test('addEnvironment should not permit duplicates', () => {
+  expect(() => {
+    const sut = new EnvironmentNotifier({ environments: [] })
+      .addEnvironment({
+        name: 'Test',
+        detection: () => true
+      })
+      .addEnvironment({
+        name: 'Test',
+        detection: () => true
+      })
+  }).toThrowError('An environment with this name already exists.');
+});
+
 test('getCurrentEnvironment should return null when no matches', () => {
   const sut = new EnvironmentNotifier({ environments: [] });
 
