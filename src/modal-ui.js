@@ -4,6 +4,7 @@ import ColorHelper from './color-helper';
 export default class ModalUi {
   constructor() {
     this.browserStorage = new BrowserStorage();
+    this.colorHelper = new ColorHelper();
   }
 
   show(domScope, environment) {
@@ -22,7 +23,7 @@ export default class ModalUi {
         left: 0;
         height: 100%;
         width: 100%;
-        color: ${new ColorHelper().getFontColor(environment.color)};
+        color: ${this.colorHelper.getFontColor(environment.color)};
         background-color: ${environment.color};
         transition: opacity 0.5s linear;
         text-align: center;

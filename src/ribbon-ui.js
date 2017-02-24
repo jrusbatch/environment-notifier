@@ -1,6 +1,10 @@
 import ColorHelper from './color-helper';
 
 export default class RibbonUi {
+  constructor() {
+    this.colorHelper = new ColorHelper();
+  }
+
   show(domScope, environment) {
     if (!domScope) { throw new Error('domScope must be provided.'); }
     if (!environment) { throw new Error('environment must be provided.'); }
@@ -18,7 +22,7 @@ export default class RibbonUi {
         left: 0;
         padding-top: 5px;
         width: 100%;
-        color: ${new ColorHelper().getFontColor(environment.color)};
+        color: ${this.colorHelper.getFontColor(environment.color)};
         background-color: ${environment.color};
         font-size: 16px;
         text-align: center;
