@@ -44,7 +44,7 @@ new EnvironmentNotifier({
 
 | Option                | Description                                                               | Default Value |
 | --------------------- | ------------------------------------------------------------------------- | ------------- |
-| `color`               | Color associated with the environment.                                    | `'rbga(255, 0, 0, .75)'` |
+| `color`               | Environment color. (Accepted value types: `#ccc`, `rgb()`, `rgba()`)      | `'rbga(255, 0, 0, .75)'` |
 | `detection`           | The environment detection function (returns `true` for match).            | `() => false` |
 | `showModalEveryView`  | Show modal for every page view.                                           | `false` |
 | `showModalFirstView`  | Show modal for first page view.                                           | `true` |

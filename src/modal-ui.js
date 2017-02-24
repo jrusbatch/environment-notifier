@@ -1,4 +1,5 @@
 import BrowserStorage from './browser-storage';
+import ColorHelper from './color-helper';
 
 export default class ModalUi {
   constructor() {
@@ -21,6 +22,7 @@ export default class ModalUi {
         left: 0;
         height: 100%;
         width: 100%;
+        color: ${new ColorHelper().getFontColor(environment.color)};
         background-color: ${environment.color};
         transition: opacity 0.5s linear;
         text-align: center;

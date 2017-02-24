@@ -1,3 +1,5 @@
+import ColorHelper from './color-helper';
+
 export default class RibbonUi {
   show(domScope, environment) {
     if (!domScope) { throw new Error('domScope must be provided.'); }
@@ -16,6 +18,7 @@ export default class RibbonUi {
         left: 0;
         padding-top: 5px;
         width: 100%;
+        color: ${new ColorHelper().getFontColor(environment.color)};
         background-color: ${environment.color};
         font-size: 16px;
         text-align: center;
