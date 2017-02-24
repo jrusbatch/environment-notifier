@@ -92,7 +92,7 @@ test('addEnvironment should apply this.defaultConfiguration.environmentDefaults'
 
 test('addEnvironment should not permit duplicates', () => {
   expect(() => {
-    const sut = new EnvironmentNotifier({ environments: [] })
+    new EnvironmentNotifier({ environments: [] })
       .addEnvironment({
         name: 'Test',
         detection: () => true
