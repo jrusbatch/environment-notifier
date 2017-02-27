@@ -19,3 +19,10 @@ cache:
   - '%APPDATA%\npm-cache'
 
 test: off
+
+deploy_script:
+  - ps: |
+      iex "npm pack"
+      iex "npm publish"
+    on:
+      branch: master
