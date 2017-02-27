@@ -11,7 +11,7 @@ export default class EnvironmentNotifier {
     this.defaultConfiguration = {
       defaultDomScope: document.body,
       environmentDefaults: {
-        color: 'rgba(255, 0, 0, .75)',
+        color: 'rgba(255, 0, 0, .75)', // Red (opacity 75%)
         detection: () => false,
         showModalEveryView: false,
         showModalFirstView: true,
