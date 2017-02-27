@@ -4,6 +4,7 @@
   "license": "MIT",
   "description": "Display on-screen notifications alerting users when viewing matching web application environments.",
   "bin": "lib/environment-notifier.min.js",
+  "main": "lib/environment-notifier.min.js",
   "files": [
     "lib/"
   ],
