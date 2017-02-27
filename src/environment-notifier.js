@@ -21,7 +21,7 @@ export default class EnvironmentNotifier {
       environments: [
         {
           name: 'Local',
-          color: 'rgba(255, 255, 224, .75)',
+          color: 'rgba(0, 100, 0, .75)', // DarkGreen (opacity 75%)
 
           // https://stackoverflow.com/a/8426365 answering https://stackoverflow.com/questions/8426171/what-regex-will-match-all-loopback-addresses
           detection: () => /^localhost$|^127(?:\.[0-9]+){0,2}\.[0-9]+$|^(?:0*\:)*?:?0*1$/.test(window.location.hostname),
@@ -30,12 +30,12 @@ export default class EnvironmentNotifier {
         },
         {
           name: 'QA',
-          color: 'rbga(173, 216, 230, .75)',
+          color: 'rgba(0, 128, 128, .75)', // Teal (opacity 75%)
           detection: () => /(qa-)|(-qa)/i.test(window.location.hostname)
         },
         {
           name: 'UAT',
-          color: 'rgba(144, 238, 144, .75)',
+          color: 'rgba(0, 100, 0, .75)', // DarkGreen (opacity 75%)
           detection: () => /(uat-)|(-uat)/i.test(window.location.hostname)
         }
       ]
