@@ -14,8 +14,8 @@ Copyright (c) 2017 Ritter Insurance Marketing`),
 if (process.env.INCLUDE_WEBPACK_HTML) {
   plugins.push(
     new HtmlWebpackPlugin({
-      template: 'demo/index.html',
-      filename: '../index.html',
+      template: __dirname + '/demo/index.html',
+      filename: 'index.html',
       inject: 'head'
     })
   );
@@ -26,7 +26,7 @@ module.exports = {
     './src/environment-notifier.js'
   ],
   output: {
-    path: './lib',
+    path: __dirname + '/lib',
     filename: 'environment-notifier.min.js',
     library: 'EnvironmentNotifier',
     libraryTarget: 'umd',
@@ -41,8 +41,5 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
-  devServer: {
-    inline: true
-  },
   plugins: plugins
 };
