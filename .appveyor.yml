@@ -25,6 +25,7 @@ deploy_script:
   - ps: |
       if ($ENV:CONFIGURATION -eq "publish")
       {
+        "//registry.npmjs.org/:_authToken=`$`{NPM_TOKEN`}" | Out-File ".npmrc"
         iex "npm pack"
         iex "npm publish"
       }
