@@ -23,8 +23,10 @@ test: off
 
 deploy_script:
   - ps: |
-      iex "npm pack"
-      iex "npm publish"
+      if ($ENV:CONFIGURATION -eq "publish")
+      {
+        iex "npm pack"
+        iex "npm publish"
+      }
     on:
       branch: master
-      configuration: publish
