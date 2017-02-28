@@ -1,5 +1,7 @@
 # Environment Notifier
 
+![Build status](https://ci.appveyor.com/api/projects/status/6sktj0hnf1xo9ok1?svg=true) ![npm version](https://img.shields.io/npm/v/environment-notifier.svg)
+
 Display on-screen notifications alerting users when viewing matching web application environments.
 
 ## Installation
