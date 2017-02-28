@@ -4,13 +4,11 @@ Display on-screen notifications alerting users when viewing matching web applica
 
 ## Installation
 
-<!--
 ```
 npm install environment-notifier
 ```
 
 Or, load this script manually: [https://unpkg.com/environment-notifier@latest/lib/environment-notifier.min.js](https://unpkg.com/environment-notifier@latest/lib/environment-notifier.min.js) -- This targets the latest version, which may include breaking changes for major version updates. A specific version can be targeted to avoid potential breaking changes. See [https://unpkg.com](https://unpkg.com) for more information.
--->
 
 ## Quickstart
 
