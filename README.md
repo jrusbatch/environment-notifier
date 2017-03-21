@@ -46,6 +46,7 @@ new EnvironmentNotifier({
 | --------------------- | ------------------------------------------------------------------------- | ------------- |
 | `color`               | Environment color. (Accepted value types: `#ccc`, `rgb()`, `rgba()`)      | `'rgba(255, 0, 0, .75)'` |
 | `detection`           | The environment detection function (returns `true` for match).            | `() => false` |
+| `modalMessageHtml`    | The HTML message to display on the modal.                                 | `'✨ You are viewing the <strong>{{ environment.name }}</strong> environment. ✨'` |
 | `showModalEveryView`  | Show modal for every page view.                                           | `false` |
 | `showModalFirstView`  | Show modal for first page view.                                           | `true` |
 | `ribbonLocation`      | The location of the on-screen ribbon. (Accepted values: `top`, `bottom`)  | `'bottom'` |

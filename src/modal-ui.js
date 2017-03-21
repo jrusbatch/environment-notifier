@@ -11,6 +11,7 @@ export default class ModalUi {
     if (!domScope) { throw new Error('domScope must be provided.'); }
     if (!environment) { throw new Error('environment must be provided.'); }
     if (!environment.name) { throw new Error('environment.name must be set.'); }
+    if (!environment.modalMessageHtml) { throw new Error('environment.modalMessageHtml must be set.'); }
 
     const elementClass = 'environment-notifier-modal';
 
@@ -64,7 +65,7 @@ export default class ModalUi {
 
     const modalContentText = document.createElement('p');
     modalContentText.id = messageId;
-    modalContentText.innerHTML = `You are viewing the <strong>${environment.name}</strong> environment.`;
+    modalContentText.innerHTML = environment.modalMessageHtml.replace(/{{\s*environment.name\s*}}/g, environment.name);
 
     const modalContentButton = document.createElement('button');
     modalContentButton.innerHTML = 'OK';

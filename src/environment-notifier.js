@@ -13,6 +13,7 @@ export default class EnvironmentNotifier {
       environmentDefaults: {
         color: 'rgba(255, 0, 0, .75)', // Red (opacity 75%)
         detection: () => false,
+        modalMessageHtml: '✨ You are viewing the <strong>{{ environment.name }}</strong> environment. ✨',
         showModalEveryView: false,
         showModalFirstView: true,
         ribbonLocation: 'bottom',
