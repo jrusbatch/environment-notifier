@@ -9,9 +9,6 @@ beforeEach(() => {
     detection: () => true,
     modalMessageHtml: 'Test message'
   };
-
-  document.body.innerHTML = '';
-  localStorage.clear();
 });
 
 test('show should append styles to domScope', () => {

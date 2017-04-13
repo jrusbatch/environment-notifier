@@ -1,10 +1,6 @@
 import 'jest';
 import BrowserStorage from '../src/browser-storage';
 
-beforeEach(() => {
-  localStorage.clear();
-});
-
 test('getModalDismissedAt should return null when no value', () => {
   const environment = {
       name: 'Test'

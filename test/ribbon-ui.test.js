@@ -1,10 +1,6 @@
 import 'jest';
 import RibbonUi from '../src/ribbon-ui';
 
-beforeEach(() => {
-  document.body.innerHTML = '';
-});
-
 test('show should append styles to domScope', () => {
   const domScope = document.createElement('div');
   const environment = { name: 'Test', detection: () => true };

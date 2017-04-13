@@ -1,11 +1,6 @@
 import 'jest';
 import EnvironmentNotifier from '../src/environment-notifier';
 
-beforeEach(() => {
-  document.body.innerHTML = '';
-  localStorage.clear();
-});
-
 test('constructor should apply defaults with provided configuration', () => {
   const sut = new EnvironmentNotifier({ environmentDefaults: { showRibbon: false } });
 
