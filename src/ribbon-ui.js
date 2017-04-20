@@ -18,9 +18,9 @@ export default class RibbonUi {
       .${elementClass} {
         position: fixed;
         ${environment.ribbonLocation === 'top' ? 'top' : 'bottom'}: 0;
-        height: 30px;
+        height: 35px;
         left: 0;
-        padding-top: 5px;
+        padding-top: 6px;
         width: 100%;
         color: ${this.colorHelper.getFontColor(environment.color)};
         background-color: ${environment.color};
@@ -29,13 +29,15 @@ export default class RibbonUi {
 
         /* https://css-tricks.com/snippets/css/system-font-stack/ */
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+        font-variant: small-caps;
       }
     `;
 
     const ribbon = document.createElement('div');
 
     ribbon.classList.add(elementClass);
-    ribbon.innerHTML = `Environment: <strong>${environment.name}</strong>`;
+    ribbon.innerHTML = `Current Environment: <strong>${environment.name}</strong>`;
 
     domScope.appendChild(style);
     domScope.appendChild(ribbon);

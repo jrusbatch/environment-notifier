@@ -11,7 +11,7 @@ export default class EnvironmentNotifier {
     this.defaultConfiguration = {
       defaultDomScope: document.body,
       environmentDefaults: {
-        color: 'rgba(255, 0, 0, .75)', // Red (opacity 75%)
+        color: 'rgba(255, 0, 0, .95)', // Red (opacity 95%)
         detection: () => false,
         modalMessageHtml: '✨ You are viewing the <strong>{{ environment.name }}</strong> environment. ✨',
         showModalEveryView: false,
@@ -22,7 +22,7 @@ export default class EnvironmentNotifier {
       environments: [
         {
           name: 'Local',
-          color: 'rgba(0, 100, 0, .75)', // DarkGreen (opacity 75%)
+          color: 'rgba(0, 100, 0, .95)', // DarkGreen (opacity 95%)
 
           // https://stackoverflow.com/a/8426365 answering https://stackoverflow.com/questions/8426171/what-regex-will-match-all-loopback-addresses
           detection: () => /^localhost$|^127(?:\.[0-9]+){0,2}\.[0-9]+$|^(?:0*\:)*?:?0*1$/.test(window.location.hostname),
@@ -31,12 +31,12 @@ export default class EnvironmentNotifier {
         },
         {
           name: 'QA',
-          color: 'rgba(0, 128, 128, .75)', // Teal (opacity 75%)
+          color: 'rgba(0, 128, 128, .95)', // Teal (opacity 95%)
           detection: () => /(qa-)|(-qa)/i.test(window.location.hostname)
         },
         {
           name: 'UAT',
-          color: 'rgba(0, 100, 0, .75)', // DarkGreen (opacity 75%)
+          color: 'rgba(0, 100, 0, .95)', // DarkGreen (opacity 95%)
           detection: () => /(uat-)|(-uat)/i.test(window.location.hostname)
         }
       ]
