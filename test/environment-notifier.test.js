@@ -1,6 +1,10 @@
 import 'jest';
 import EnvironmentNotifier from '../src/environment-notifier';
 
+beforeEach(() => {
+  document.body.innerHTML = '';
+});
+
 test('constructor should apply defaults with provided configuration', () => {
   const sut = new EnvironmentNotifier({ environmentDefaults: { showRibbon: false } });
 
@@ -147,7 +151,7 @@ test('start should default to document.body for displaying ribbon', () => {
 });
 
 test('start(domScope) should use provided domScope for displaying modal', () => {
-  const container = document.createElement('div');
+  const container = document.createElement('body');
 
   const sut = new EnvironmentNotifier({
     environments: [
@@ -166,7 +170,7 @@ test('start(domScope) should use provided domScope for displaying modal', () => 
 });
 
 test('start(domScope) should use provided domScope for displaying ribbon', () => {
-  const container = document.createElement('div');
+  const container = document.createElement('body');
 
   const sut = new EnvironmentNotifier({
     environments: [
@@ -190,8 +194,6 @@ test('start should throw if a DOM item is not provided', () => {
 });
 
 test('start should always show modal on every view when shouldShowEveryView is true regardless if previously dismissed', () => {
-  const container = document.createElement('div');
-
   const sut = new EnvironmentNotifier({
     environments: [
       {
@@ -207,16 +209,14 @@ test('start should always show modal on every view when shouldShowEveryView is t
     `environment-notifier-modal-dismissed:${sut.getCurrentEnvironment().name}`,
     new Date().toJSON());
 
-  sut.start(container);
+  sut.start();
 
-  const modal = container.querySelector('.environment-notifier-modal');
+  const modal = document.body.querySelector('.swal2-shown');
 
   expect(modal).toBeTruthy();
 });
 
-test('start should not show modal if previously dismissed when showModelEveryView is false and showModelFirstView is true', () => {
-  const container = document.createElement('div');
-
+test('start should not show modal if previously dismissed when showModalEveryView is false and showModalFirstView is true', () => {
   const sut = new EnvironmentNotifier({
     environments: [
       {
@@ -224,7 +224,7 @@ test('start should not show modal if previously dismissed when showModelEveryVie
         detection: () => true,
         displayRibbon: true,
         showModalEveryView: false,
-        showModelFirstView: true
+        showModalFirstView: true
       }
     ]
   });
@@ -233,9 +233,9 @@ test('start should not show modal if previously dismissed when showModelEveryVie
     `environment-notifier-modal-dismissed:${sut.getCurrentEnvironment().name}`,
     new Date().toJSON());
 
-  sut.start(container);
+  sut.start();
 
-  const modal = container.querySelector('.environment-notifier-modal');
+  const modal = document.body.querySelector('.swal2-shown');
 
   expect(modal).toBeNull();
 });

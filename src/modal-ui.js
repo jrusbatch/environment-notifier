@@ -1,10 +1,9 @@
+import { default as swal } from 'sweetalert2';
 import BrowserStorage from './browser-storage';
-import ColorHelper from './color-helper';
 
 export default class ModalUi {
   constructor() {
     this.browserStorage = new BrowserStorage();
-    this.colorHelper = new ColorHelper();
   }
 
   show(domScope, environment) {
@@ -13,89 +12,26 @@ export default class ModalUi {
     if (!environment.name) { throw new Error('environment.name must be set.'); }
     if (!environment.modalMessageHtml) { throw new Error('environment.modalMessageHtml must be set.'); }
 
-    const elementClass = 'environment-notifier-modal';
+    const domScopeIsBodyTag = domScope.tagName.match(/^body$/i);
 
-    const style = document.createElement('style');
+    // This is a workaround for a limitation of the `target` property below.
+    if (!domScopeIsBodyTag && !domScope.id) {
+      throw new Error('domScope must be a body tag or have an id set.');
+    }
 
-    style.innerHTML = `
-      .${elementClass} {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        color: ${this.colorHelper.getFontColor(environment.color)};
-        background-color: ${environment.color};
-        transition: opacity 0.5s linear;
-        text-align: center;
-        font-size: 22px;
+    return swal({
+      titleText: 'Notice',
+      html: environment.modalMessageHtml.replace(/{{\s*environment.name\s*}}/g, environment.name),
+      type: 'info',
+      target: domScopeIsBodyTag ? 'body' : `#${domScope.id}`
+    })
+      .then(() => { this.onModalClosed(domScope, environment); })
+      .catch(() => { this.onModalClosed(domScope, environment); });
+  }
 
-        /* https://css-tricks.com/snippets/css/system-font-stack/ */
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  onModalClosed(domScope, environment) {
+    this.browserStorage.setModalDismissed(environment);
 
-        /* https://stackoverflow.com/a/25461690 answering https://stackoverflow.com/questions/491052/minimum-and-maximum-value-of-z-index*/
-        z-index: 2147483647;
-      }
-
-      .${elementClass} .${elementClass}-content {
-        position: fixed;
-
-        /* https://stackoverflow.com/a/32694476 answering https://stackoverflow.com/questions/3157372/css-horizontal-centering-of-a-fixed-div */
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .${elementClass} .${elementClass}-content button {
-        margin-top: 5px;
-        padding: 10px;
-        width: 300px;
-      }
-    `;
-
-    const messageId = `${elementClass}-message`;
-
-    const modal = document.createElement('div');
-    modal.setAttribute('role', 'alertdialog');
-    modal.setAttribute('aria-describedby', messageId);
-    modal.classList.add(elementClass);
-
-    const modalContent = document.createElement('div');
-    modalContent.classList.add(`${elementClass}-content`);
-
-    const modalContentText = document.createElement('p');
-    modalContentText.id = messageId;
-    modalContentText.innerHTML = environment.modalMessageHtml.replace(/{{\s*environment.name\s*}}/g, environment.name);
-
-    const modalContentButton = document.createElement('button');
-    modalContentButton.innerHTML = 'OK';
-    modalContentButton.onclick = evt => {
-      evt.preventDefault();
-
-      this.browserStorage.setModalDismissed(environment);
-
-      modal.style.opacity = '0';
-      modal.dispatchEvent(new CustomEvent('environmentNotifier.modalDismissed', { bubbles: true }));
-    };
-
-    modal.addEventListener('transitionend', evt => {
-      evt.currentTarget.parentNode.removeChild(evt.currentTarget);
-    });
-
-    document.addEventListener('keydown', function onKeydown(evt) {
-      if (evt.keyCode === 13 /* enter */ || evt.keyCode === 27 /* esc */) {
-        evt.preventDefault();
-        modalContentButton.click();
-        document.removeEventListener('keydown', onKeydown);
-      }
-    });
-
-    modalContent.appendChild(modalContentText);
-    modalContent.appendChild(modalContentButton);
-
-    modal.appendChild(modalContent);
-
-    domScope.appendChild(style);
-    domScope.appendChild(modal);
+    domScope.dispatchEvent(new CustomEvent('environmentNotifier.modalDismissed', { bubbles: true }));
   }
 }
