@@ -23,6 +23,7 @@ if (process.env.INCLUDE_WEBPACK_HTML) {
 
 module.exports = {
   entry: [
+    './node_modules/sweetalert2/dist/sweetalert2.min.css',
     './src/environment-notifier.js'
   ],
   output: {
@@ -33,10 +34,17 @@ module.exports = {
     umdNamedDefine: true
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        use: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       }
     ]
   },
