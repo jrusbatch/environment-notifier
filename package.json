@@ -1,6 +1,6 @@
 {
   "name": "environment-notifier",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "license": "MIT",
   "description": "Display on-screen notifications alerting users when viewing matching web application environments.",
   "main": "lib/environment-notifier.min.js",
@@ -35,6 +35,7 @@
     "url": "https://github.com/ritterim/environment-notifier"
   },
   "dependencies": {
+    "assign-deep": "^0.4.5",
     "font-color-contrast": "^1.0.3",
     "sweetalert2": "^6.6.0"
   },

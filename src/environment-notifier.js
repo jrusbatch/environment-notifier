@@ -1,3 +1,4 @@
+import assignDeep from 'assign-deep';
 import BrowserStorage from './browser-storage';
 import ModalUi from './modal-ui';
 import RibbonUi from './ribbon-ui';
@@ -45,7 +46,7 @@ export default class EnvironmentNotifier {
     this.configuration = this.defaultConfiguration;
 
     if (configuration) {
-      Object.assign(this.configuration, configuration);
+      assignDeep(this.configuration, configuration);
     }
 
     // Apply this.defaultConfiguration.environmentDefaults onto each environment
