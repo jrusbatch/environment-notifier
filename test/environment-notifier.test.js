@@ -49,6 +49,16 @@ test('constructor should apply this.configuration.environmentDefaults for constr
   expect(sut.configuration.environments[0].showRibbon).toBe(true);
 });
 
+test('constructor should apply configuration and keep existing this.configuration.environmentDefaults values', () => {
+  const sut = new EnvironmentNotifier({
+    environmentDefaults: {
+      ribbonLocation: 'top'
+    }
+  });
+
+  expect(sut.configuration.environmentDefaults.color).toBeTruthy();
+});
+
 test('constructor should apply environment specific configuration for built-in environments', () => {
   const sut = new EnvironmentNotifier();
 

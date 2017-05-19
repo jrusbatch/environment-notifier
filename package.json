@@ -35,6 +35,7 @@
     "url": "https://github.com/ritterim/environment-notifier"
   },
   "dependencies": {
+    "assign-deep": "^0.4.5",
     "font-color-contrast": "^1.0.3",
     "sweetalert2": "^6.6.0"
   },
