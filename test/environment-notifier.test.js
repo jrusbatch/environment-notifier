@@ -132,7 +132,7 @@ test('start should default to document.body for displaying modal', () => {
       {
         name: 'Test',
         detection: () => true,
-        displayRibbon: false,
+        showRibbon: false,
         showModalEveryView: true
       }
     ]
@@ -149,7 +149,7 @@ test('start should default to document.body for displaying ribbon', () => {
       {
         name: 'Test',
         detection: () => true,
-        displayRibbon: true,
+        showRibbon: true,
         showModalEveryView: false
       }
     ]
@@ -161,14 +161,14 @@ test('start should default to document.body for displaying ribbon', () => {
 });
 
 test('start(domScope) should use provided domScope for displaying modal', () => {
-  const container = document.createElement('body');
+  const container = document.body;
 
   const sut = new EnvironmentNotifier({
     environments: [
       {
         name: 'Test',
         detection: () => true,
-        displayRibbon: false,
+        showRibbon: false,
         showModalEveryView: true
       }
     ]
@@ -179,7 +179,7 @@ test('start(domScope) should use provided domScope for displaying modal', () => 
   expect(container.innerHTML).toMatch(/Test/);
 });
 
-test('start(domScope) should use provided domScope for displaying ribbon', () => {
+test('start() should use provided ribbonTarget for displaying ribbon', () => {
   const container = document.createElement('body');
 
   const sut = new EnvironmentNotifier({
@@ -187,13 +187,14 @@ test('start(domScope) should use provided domScope for displaying ribbon', () =>
       {
         name: 'Test',
         detection: () => true,
-        displayRibbon: true,
-        showModalEveryView: false
+        showRibbon: true,
+        showModalEveryView: false,
+        ribbonTarget: container
       }
     ]
   });
 
-  sut.start(container);
+  sut.start();
 
   expect(container.innerHTML).toMatch(/Test/);
 });
@@ -209,7 +210,7 @@ test('start should always show modal on every view when shouldShowEveryView is t
       {
         name: 'Test',
         detection: () => true,
-        displayRibbon: true,
+        showRibbon: true,
         showModalEveryView: true
       }
     ]
@@ -232,7 +233,7 @@ test('start should not show modal if previously dismissed when showModalEveryVie
       {
         name: 'Test',
         detection: () => true,
-        displayRibbon: true,
+        showRibbon: true,
         showModalEveryView: false,
         showModalFirstView: true
       }

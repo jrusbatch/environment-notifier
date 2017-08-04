@@ -18,6 +18,8 @@ export default class EnvironmentNotifier {
         showModalEveryView: false,
         showModalFirstView: true,
         ribbonLocation: 'bottom',
+        ribbonPosition: 'fixed',
+        ribbonTarget: document.body,
         showRibbon: true,
       },
       environments: [
@@ -47,6 +49,11 @@ export default class EnvironmentNotifier {
 
     if (configuration) {
       assignDeep(this.configuration, configuration);
+
+      if (configuration.environmentDefaults && configuration.environmentDefaults.ribbonTarget) {
+        this.configuration.environmentDefaults.ribbonTarget =
+          configuration.environmentDefaults.ribbonTarget;
+      }
     }
 
     // Apply this.defaultConfiguration.environmentDefaults onto each environment
@@ -107,8 +114,10 @@ export default class EnvironmentNotifier {
     }
 
     if (environment.showRibbon) {
-      this.ribbonUi.show(domScope, environment);
+      this.ribbonUi.show(environment);
     }
+
+    return this;
   }
 
   modalPreviouslyDismissed(environment) {

@@ -50,6 +50,8 @@ new EnvironmentNotifier({
 | `showModalEveryView`  | Show modal for every page view.                                           | `false` |
 | `showModalFirstView`  | Show modal for first page view.                                           | `true` |
 | `ribbonLocation`      | The location of the on-screen ribbon. (Accepted values: `top`, `bottom`)  | `'bottom'` |
+| `ribbonPosition`      | The CSS `position` of the ribbon.                                         | `'fixed'` |
+| `ribbonTarget`        | The DOM element to inject the ribbon into.                                | `document.body` |
 | `showRibbon`          | Whether the on-screen ribbon should be shown or not.                      | `true` |
 
 ## Methods
