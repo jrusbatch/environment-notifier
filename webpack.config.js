@@ -1,5 +1,5 @@
+const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const packageJson = require('./package');
 
 const plugins = [
@@ -10,16 +10,6 @@ Copyright (c) 2017 Ritter Insurance Marketing`),
     sourceMap: true
   })
 ];
-
-if (process.env.INCLUDE_WEBPACK_HTML) {
-  plugins.push(
-    new HtmlWebpackPlugin({
-      template: __dirname + '/demo/index.html',
-      filename: 'index.html',
-      inject: 'head'
-    })
-  );
-}
 
 module.exports = {
   entry: [
@@ -48,6 +38,9 @@ module.exports = {
       }
     ]
   },
+  plugins: plugins,
   devtool: 'source-map',
-  plugins: plugins
+  devServer: {
+    contentBase: path.join(__dirname, 'demo')
+  }
 };

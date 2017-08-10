@@ -5,10 +5,11 @@ export default class RibbonUi {
     this.colorHelper = new ColorHelper();
   }
 
-  show(domScope, environment) {
-    if (!domScope) { throw new Error('domScope must be provided.'); }
+  show(environment) {
     if (!environment) { throw new Error('environment must be provided.'); }
     if (!environment.name) { throw new Error('environment.name must be set.'); }
+    if (!environment.ribbonPosition) { throw new Error('environment.ribbonPosition must be set.'); }
+    if (!environment.ribbonTarget) { throw new Error('environment.ribbonTarget must be set.'); }
 
     const elementClass = 'environment-notifier-ribbon';
 
@@ -16,7 +17,7 @@ export default class RibbonUi {
 
     style.innerHTML = `
       .${elementClass} {
-        position: fixed;
+        position: ${environment.ribbonPosition};
         ${environment.ribbonLocation === 'top' ? 'top' : 'bottom'}: 0;
         height: 35px;
         left: 0;
@@ -39,7 +40,7 @@ export default class RibbonUi {
     ribbon.classList.add(elementClass);
     ribbon.innerHTML = `Current Environment: <strong>${environment.name}</strong>`;
 
-    domScope.appendChild(style);
-    domScope.appendChild(ribbon);
+    environment.ribbonTarget.appendChild(style);
+    environment.ribbonTarget.appendChild(ribbon);
   }
 }
