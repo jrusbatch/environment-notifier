@@ -21,17 +21,13 @@ export default class RibbonUi {
         ${environment.ribbonLocation === 'top' ? 'top' : 'bottom'}: 0;
         height: 35px;
         left: 0;
-        padding-top: 6px;
+        padding-top: .5rem;
         width: 100%;
         color: ${this.colorHelper.getFontColor(environment.color)};
         background-color: ${environment.color};
         font-size: 16px;
         text-align: center;
-
-        /* https://css-tricks.com/snippets/css/system-font-stack/ */
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-        font-variant: small-caps;
+        font-family: sans-serif;
       }
     `;
 
