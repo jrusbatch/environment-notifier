@@ -14,7 +14,7 @@
     "check": "npm run audit && npm outdated --depth 0",
     "coverage": "jest --coverage",
     "lint": "eslint src test",
-    "prepublish": "npm run build",
+    "prepare": "npm run build",
     "test": "jest",
     "test:watch": "jest --watch",
     "validate": "npm run lint && npm test",
