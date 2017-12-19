@@ -16,7 +16,7 @@ export default class EnvironmentNotifier {
         detection: () => false,
         modalMessageHtml: '✨ You are viewing the <strong>{{ environment.name }}</strong> environment. ✨',
         showModalEveryView: false,
-        showModalFirstView: true,
+        showModalFirstView: false,
         ribbonLocation: 'bottom',
         ribbonPosition: 'fixed',
         ribbonTarget: document.body,
