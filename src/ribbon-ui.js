@@ -35,7 +35,7 @@ export default class RibbonUi {
     const ribbon = document.createElement('div');
 
     ribbon.classList.add(elementClass);
-    ribbon.innerHTML = `Current Environment: <strong>${environment.name}</strong>`;
+    ribbon.innerHTML = `<div>Current Environment: <strong>${environment.name}</strong></div>`;
 
     environment.ribbonTarget.appendChild(style);
     environment.ribbonTarget.appendChild(ribbon);
