@@ -17,17 +17,18 @@ export default class RibbonUi {
 
     style.innerHTML = `
       .${elementClass} {
+        background-color: ${environment.color};
+        color: ${this.colorHelper.getFontColor(environment.color)};
+        display: flex;
+        font-family: inherit;
+        font-size: 1.6rem;
+        left: 0;
+        justify-content: center;
+        padding: .7rem 1rem;
         position: ${environment.ribbonPosition};
         ${environment.ribbonLocation === 'top' ? 'top' : 'bottom'}: 0;
-        height: 35px;
-        left: 0;
-        padding-top: .5rem;
+        text-transform: uppercase;
         width: 100%;
-        color: ${this.colorHelper.getFontColor(environment.color)};
-        background-color: ${environment.color};
-        font-size: 16px;
-        text-align: center;
-        font-family: sans-serif;
       }
     `;
 
