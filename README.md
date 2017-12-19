@@ -48,7 +48,7 @@ new EnvironmentNotifier({
 | `detection`           | The environment detection function (returns `true` for match).            | `() => false` |
 | `modalMessageHtml`    | The HTML message to display on the modal.                                 | `'✨ You are viewing the <strong>{{ environment.name }}</strong> environment. ✨'` |
 | `showModalEveryView`  | Show modal for every page view.                                           | `false` |
-| `showModalFirstView`  | Show modal for first page view.                                           | `true` |
+| `showModalFirstView`  | Show modal for first page view.                                           | `false` |
 | `ribbonLocation`      | The location of the on-screen ribbon. (Accepted values: `top`, `bottom`)  | `'bottom'` |
 | `ribbonPosition`      | The CSS `position` of the ribbon.                                         | `'fixed'` |
 | `ribbonTarget`        | The DOM element to inject the ribbon into.                                | `document.body` |
