@@ -21,7 +21,7 @@ export default class RibbonUi {
         color: ${this.colorHelper.getFontColor(environment.color)};
         display: flex;
         font-family: inherit;
-        font-size: 1rem;
+        font-size: inherit;
         left: 0;
         justify-content: center;
         padding: .7rem 1rem;
