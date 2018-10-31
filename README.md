@@ -4,6 +4,12 @@
 
 Display on-screen notifications alerting users when viewing matching web application environments.
 
+![Environment ribbon on top](/docs/images/ribbon_top.png)
+*An example with the ribbon fixed at the top*
+
+![Environment ribbon at bottom](/docs/images/ribbon_bottom.png)
+*An example with the ribbon fixed at the bottom*
+
 ## Installation
 
 ```
