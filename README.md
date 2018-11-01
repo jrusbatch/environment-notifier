@@ -5,10 +5,10 @@
 Display on-screen notifications alerting users when viewing matching web application environments.
 
 ![Environment ribbon on top](/docs/images/ribbon_top.png)
-*An example with the ribbon fixed at the top*
+_An example with the ribbon fixed at the top_
 
 ![Environment ribbon at bottom](/docs/images/ribbon_bottom.png)
-*An example with the ribbon fixed at the bottom*
+_An example with the ribbon fixed at the bottom_
 
 ## Installation
 
@@ -26,7 +26,7 @@ new EnvironmentNotifier().start();
 
 ## Usage
 
-- Run `new EnvironmentNotifier().start();`, optionally specifying the scope in the parameter *(defaults to `document.body`)*.
+- Run `new EnvironmentNotifier().start();`, optionally specifying the scope in the parameter _(defaults to `document.body`)_.
 
 Configuration options can be specified in the `EnvironmentNotifier` constructor. Example:
 
@@ -40,26 +40,26 @@ new EnvironmentNotifier({
 
 ## Configuration options
 
-| Option                | Description                                                               | Default Value |
-| --------------------- | ------------------------------------------------------------------------- | ------------- |
-| `defaultDomScope`     | The default DOM scope to use.                                             | `document.body` |
-| `environmentDefaults` | The defaults to apply when specific settings are not provided.            | See below |
-| `environments`        | The configured environments.                                              | Local, QA, UAT environments |
+| Option                | Description                                                    | Default Value               |
+| --------------------- | -------------------------------------------------------------- | --------------------------- |
+| `defaultDomScope`     | The default DOM scope to use.                                  | `document.body`             |
+| `environmentDefaults` | The defaults to apply when specific settings are not provided. | See below                   |
+| `environments`        | The configured environments.                                   | Local, QA, UAT environments |
 
 ### environmentDefaults
 
-| Option                | Description                                                               | Default Value |
-| --------------------- | ------------------------------------------------------------------------- | ------------- |
-| `color`               | Environment color. (Accepted value types: `#ccc`, `rgb()`, `rgba()`)      | `'rgba(255, 0, 0, .75)'` |
-| `detection`           | The environment detection function (returns `true` for match).            | `() => false` |
-| `modalMessageHtml`    | The HTML message to display on the modal.                                 | `'✨ You are viewing the <strong>{{ environment.name }}</strong> environment. ✨'` |
-| `showModalEveryView`  | Show modal for every page view.                                           | `false` |
-| `showModalFirstView`  | Show modal for first page view.                                           | `false` |
-| `ribbonLocation`      | The location of the on-screen ribbon. (Accepted values: `top`, `bottom`)  | `'bottom'` |
-| `ribbonPosition`      | The CSS `position` of the ribbon.                                         | `'fixed'` |
-| `ribbonTarget`        | The DOM element to inject the ribbon into.                                | `document.body` |
-| `showRibbon`          | Whether the on-screen ribbon should be shown or not.                      | `true` |
-| `customClass`         | Custom class to be added to the body of the ribbon and modal.             | `true` |
+| Option               | Description                                                              | Default Value                                                                      |
+| -------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| `color`              | Environment color. (Accepted value types: `#ccc`, `rgb()`, `rgba()`)     | `'rgba(255, 0, 0, .75)'`                                                           |
+| `detection`          | The environment detection function (returns `true` for match).           | `() => false`                                                                      |
+| `modalMessageHtml`   | The HTML message to display on the modal.                                | `'✨ You are viewing the <strong>{{ environment.name }}</strong> environment. ✨'` |
+| `showModalEveryView` | Show modal for every page view.                                          | `false`                                                                            |
+| `showModalFirstView` | Show modal for first page view.                                          | `false`                                                                            |
+| `ribbonLocation`     | The location of the on-screen ribbon. (Accepted values: `top`, `bottom`) | `'bottom'`                                                                         |
+| `ribbonPosition`     | The CSS `position` of the ribbon.                                        | `'fixed'`                                                                          |
+| `ribbonTarget`       | The DOM element to inject the ribbon into.                               | `document.body`                                                                    |
+| `showRibbon`         | Whether the on-screen ribbon should be shown or not.                     | `true`                                                                             |
+| `customClass`        | Custom class to be added to the body of the ribbon and modal.            | `null`                                                                             |
 
 ## Methods
 
