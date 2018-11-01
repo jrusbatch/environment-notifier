@@ -14,13 +14,15 @@ export default class EnvironmentNotifier {
       environmentDefaults: {
         color: 'rgba(255, 0, 0, .95)', // Red (opacity 95%)
         detection: () => false,
-        modalMessageHtml: '✨ You are viewing the <strong>{{ environment.name }}</strong> environment. ✨',
+        modalMessageHtml:
+          '✨ You are viewing the <strong>{{ environment.name }}</strong> environment. ✨',
         showModalEveryView: false,
         showModalFirstView: false,
         ribbonLocation: 'bottom',
         ribbonPosition: 'fixed',
         ribbonTarget: document.body,
         showRibbon: true,
+        customClass: null
       },
       environments: [
         {
@@ -28,7 +30,10 @@ export default class EnvironmentNotifier {
           color: 'rgba(0, 100, 0, .95)', // DarkGreen (opacity 95%)
 
           // https://stackoverflow.com/a/8426365 answering https://stackoverflow.com/questions/8426171/what-regex-will-match-all-loopback-addresses
-          detection: () => /^localhost$|^127(?:\.[0-9]+){0,2}\.[0-9]+$|^(?:0*\:)*?:?0*1$/.test(window.location.hostname),
+          detection: () =>
+            /^localhost$|^127(?:\.[0-9]+){0,2}\.[0-9]+$|^(?:0*\:)*?:?0*1$/.test(
+              window.location.hostname
+            ),
 
           showModalFirstView: false
         },
@@ -50,7 +55,10 @@ export default class EnvironmentNotifier {
     if (configuration) {
       assignDeep(this.configuration, configuration);
 
-      if (configuration.environmentDefaults && configuration.environmentDefaults.ribbonTarget) {
+      if (
+        configuration.environmentDefaults &&
+        configuration.environmentDefaults.ribbonTarget
+      ) {
         this.configuration.environmentDefaults.ribbonTarget =
           configuration.environmentDefaults.ribbonTarget;
       }
@@ -59,21 +67,29 @@ export default class EnvironmentNotifier {
     // Apply this.defaultConfiguration.environmentDefaults onto each environment
     // where values are currently undefined.
     this.configuration.environments.forEach(env => {
-      Object.keys(this.defaultConfiguration.environmentDefaults).forEach(key => {
-        if (env[key] === undefined) {
-          env[key] = this.defaultConfiguration.environmentDefaults[key];
+      Object.keys(this.defaultConfiguration.environmentDefaults).forEach(
+        key => {
+          if (env[key] === undefined) {
+            env[key] = this.defaultConfiguration.environmentDefaults[key];
+          }
         }
-      });
+      );
     });
   }
 
   addEnvironment(environment) {
-    if (!environment) { throw new Error('environment must be provided.'); }
-    if (!environment.name) { throw new Error('environment.name must be set.'); }
+    if (!environment) {
+      throw new Error('environment must be provided.');
+    }
+    if (!environment.name) {
+      throw new Error('environment.name must be set.');
+    }
     if (!environment.detection || typeof environment.detection !== 'function') {
       throw new Error('environment.detection must be a function.');
     }
-    if (this.configuration.environments.some(x => x.name === environment.name)) {
+    if (
+      this.configuration.environments.some(x => x.name === environment.name)
+    ) {
       throw new Error('An environment with this name already exists.');
     }
 
@@ -95,22 +111,33 @@ export default class EnvironmentNotifier {
   }
 
   removeEnvironment(environmentName) {
-    this.configuration.environments = this.configuration.environments
-      .filter(x => x.name !== environmentName);
+    this.configuration.environments = this.configuration.environments.filter(
+      x => x.name !== environmentName
+    );
 
     return this;
   }
 
   start(domScope = this.configuration.defaultDomScope) {
-    if (!domScope) { throw new Error('domScope must be provided.'); }
+    if (!domScope) {
+      throw new Error('domScope must be provided.');
+    }
 
     const environment = this.getCurrentEnvironment();
     if (!environment) {
       return;
     }
 
-    if (environment.showModalEveryView || (environment.showModalFirstView && !this.modalPreviouslyDismissed(environment))) {
-      this.modalUi.show(domScope, environment);
+    if (
+      environment.showModalEveryView ||
+      (environment.showModalFirstView &&
+        !this.modalPreviouslyDismissed(environment))
+    ) {
+      this.modalUi.show(
+        domScope,
+        environment,
+        this.configuration.environmentDefaults.customClass
+      );
     }
 
     if (environment.showRibbon) {
@@ -121,7 +148,9 @@ export default class EnvironmentNotifier {
   }
 
   modalPreviouslyDismissed(environment) {
-    if (!environment) { throw new Error('environment must be provided.'); }
+    if (!environment) {
+      throw new Error('environment must be provided.');
+    }
 
     return !!this.browserStorage.getModalDismissedAt(environment);
   }

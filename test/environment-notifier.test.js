@@ -22,12 +22,14 @@ test('constructor should rewrite environments when provided', () => {
     environments: [
       {
         name: 'Test',
-        detection: () => true
+        detection: () => true,
+        customClass: 'env-notify'
       }
     ]
   });
 
   expect(sut.configuration.environments.length).toBe(1);
+  expect(sut.configuration.environments[0].customClass).toEqual('env-notify');
 });
 
 test('constructor should apply this.configuration.environmentDefaults for built-in environments', () => {

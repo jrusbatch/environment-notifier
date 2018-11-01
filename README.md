@@ -59,6 +59,7 @@ new EnvironmentNotifier({
 | `ribbonPosition`      | The CSS `position` of the ribbon.                                         | `'fixed'` |
 | `ribbonTarget`        | The DOM element to inject the ribbon into.                                | `document.body` |
 | `showRibbon`          | Whether the on-screen ribbon should be shown or not.                      | `true` |
+| `customClass`         | Custom class to be added to the body of the ribbon and modal.             | `true` |
 
 ## Methods
 
