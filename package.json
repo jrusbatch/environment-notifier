@@ -1,6 +1,6 @@
 {
   "name": "environment-notifier",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "license": "MIT",
   "description": "Display on-screen notifications alerting users when viewing matching web application environments.",
   "main": "lib/environment-notifier.min.js",
