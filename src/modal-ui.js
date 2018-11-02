@@ -23,7 +23,8 @@ export default class ModalUi {
       titleText: 'Notice',
       html: environment.modalMessageHtml.replace(/{{\s*environment.name\s*}}/g, environment.name),
       type: 'info',
-      target: domScopeIsBodyTag ? 'body' : `#${domScope.id}`
+      target: domScopeIsBodyTag ? 'body' : `#${domScope.id}`,
+      customClass: environment.customClass
     })
       .then(() => { this.onModalClosed(domScope, environment); })
       .catch(() => { this.onModalClosed(domScope, environment); });
