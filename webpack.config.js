@@ -5,10 +5,7 @@ const packageJson = require('./package');
 const plugins = [
   new webpack.BannerPlugin(
 `Environment Notifier v${packageJson.version}
-Copyright (c) 2017 Ritter Insurance Marketing`),
-  new webpack.optimize.UglifyJsPlugin({
-    sourceMap: true
-  })
+Copyright (c) 2017 Ritter Insurance Marketing`)
 ];
 
 module.exports = {
@@ -20,6 +17,7 @@ module.exports = {
     path: __dirname + '/lib',
     filename: 'environment-notifier.min.js',
     library: 'EnvironmentNotifier',
+    libraryExport: 'default',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },

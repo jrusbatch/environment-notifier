@@ -31,7 +31,7 @@ export default class EnvironmentNotifier {
 
           // https://stackoverflow.com/a/8426365 answering https://stackoverflow.com/questions/8426171/what-regex-will-match-all-loopback-addresses
           detection: () =>
-            /^localhost$|^127(?:\.[0-9]+){0,2}\.[0-9]+$|^(?:0*\:)*?:?0*1$/.test(
+            /^localhost$|^127(?:\.[0-9]+){0,2}\.[0-9]+$|^(?:0*\:)*?:?0*1$/.test( // eslint-disable-line no-useless-escape
               window.location.hostname
             ),
 
